@@ -1,7 +1,7 @@
 # Lenguajes-de-interfaz
 ## CAPITULO 2
 #### 92. Introducir dos parejas de coordenadas de la linea recta  que contiene los puntos e imprimir los resultados como números racionales en sus mínimas expresiones. Si el resultado es negativo, hacer que el numerador sea el número negativo.
-```csharp
+```c++
 
 #include <iostream>
 
@@ -28,7 +28,7 @@ int main()
     
 ```
 #### 94. Introducir A, B, y C para la parábola y=Ax2+Bx+C, donde A!=0. Calcular la ecuación de la directriz y las coordenadas del foco.
-```csharp
+```c++
 #include <iostream>
 
 using namespace std;
@@ -73,4 +73,138 @@ int main()
     }
 }
 
+```
+## CAPITULO 10
+#### 5. Programar la computadora para que "dibuje" un cuadro en la terminal
+```c++
+#include <iostream>
+#include <conio.h>
+
+using namespace std;
+
+
+int main()
+{
+    int lado;
+    cout << "Introducir largo del lado: ";
+    cin >> lado;
+    for (int i = 0; i < lado; i++)//fila
+    {
+        for (int j = 0; j < lado;j++)//columna
+        {
+            if (i == 0 || j == 0 || i == lado - 1 || j == lado - 1) {
+                cout << "*";
+            }
+            else
+            {
+                cout << " ";
+            }
+        }
+       cout << endl;
+        
+    }
+}
+```
+#### 6. La computadora trata de adivinar un número que tiene usted en mente. Primero, ella da un número y usted le dice si es demasiado alto, demasiado bajo o correcto. En base a la información que se le proporcione, la computadora ensaya de nuevo. El proceso continua hasta que la computadora acierta el número. Generar un programa que genere este juego de tanteos.
+```c++
+#include <iostream>
+#include <ctime>
+#include <cstdlib>
+#include <stdlib.h>
+#include <time.h>
+
+using namespace std;
+int main()
+{
+    //Declaración de variables
+    int LimInferior, LimSuperior, num;
+    char entrada;
+    srand(time(NULL));
+    //Insercion de limites
+    cout << "Introduce limite inferior: " << endl;
+    cin >> LimInferior;
+    cout << "Introduce limite superior: " << endl;
+    cin >> LimSuperior;
+
+    num = (LimInferior) + rand() % (LimSuperior -LimInferior);//genera numero aleatorio
+   
+    cout << "Piensa en un numero..."<<endl << endl;
+    int cont = 0;
+  
+    do 
+    {
+        
+        cont++;
+        
+        cout << "El numero es: " << num << " ?" << endl;
+        cout << "s=Menor, b=Mayor, c=Correcto" << endl;
+        cin >> entrada;
+        switch (entrada)
+        {
+        case 's':
+            LimSuperior = num;
+            num = (LimInferior)+rand() % (LimSuperior - LimInferior);
+            break;
+        case 'b':
+            LimInferior = num;
+            num = (LimInferior)+rand() % (LimSuperior - LimInferior);
+            break;
+        case 'c':
+            cout << " " << endl << endl;
+            cout << "F  E  L  I  C  I  D  A  D  E  S " << endl;
+            cout << "Intentos: "<<cont;
+            break;
+        default:
+            cout << "Por favor introduce un valor existente"<<endl;
+            break; 
+        }
+
+
+    } while (entrada != 'c');
+      
+}
+```
+#### 7. Correr un programa que pida a dos jugadores que adivinen un número que la computadora saque al azar entre 1 y 75. El programa dará 15 puntos al jugador que de la respuesta mas cercana.
+```c++
+#include <iostream>
+#include <stdlib.h>
+#include <time.h>
+using namespace std;
+int main()
+{
+    int random;
+    int p1;
+    int p2;
+    int diferencia1, diferencia2;
+    int cercano;
+    random = 1 + rand() % 75-1;
+    cout << "el numero random es: " << random << endl;
+
+    cout << "Player1: ";
+    cin >> p1;
+    cout << "Player2: ";
+    cin >> p2;
+
+    if (random == p1)
+    {
+        cout << "Ganador: Player1 +15 puntos";
+    }
+    else if (random == p2)
+    {
+        cout << "Ganador: Player2 +15 puntos";
+    }
+    else
+    {
+        diferencia1 =abs(random - p1);
+        diferencia2 = abs(random - p2);
+        if (diferencia1 > diferencia2)
+        {
+            cout << "Ganador: Player2 +15 puntos";
+        }
+        else
+        {
+            cout << "Ganador: Player1 +15 puntos";
+        }
+    }
+}
 ```
