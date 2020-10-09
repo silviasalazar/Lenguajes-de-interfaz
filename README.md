@@ -220,3 +220,4 @@ int main()
     cout << "El numero random es: " << num << endl;
 }
 ```
+![imagen](./Imagenes/programa7.PNG)
