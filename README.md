@@ -27,6 +27,7 @@ int main()
 }
     
 ```
+![imagen](./Imagenes/pendiente.PNG)
 #### 94. Introducir A, B, y C para la parábola y=Ax2+Bx+C, donde A!=0. Calcular la ecuación de la directriz y las coordenadas del foco.
 ```c++
 #include <iostream>
@@ -74,6 +75,7 @@ int main()
 }
 
 ```
+![imagen](./Imagenes/pendiente.PNG)
 ## CAPITULO 10
 #### 5. Programar la computadora para que "dibuje" un cuadro en la terminal
 ```c++
