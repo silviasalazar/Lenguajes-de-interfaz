@@ -75,7 +75,7 @@ int main()
 }
 
 ```
-![imagen](./Imagenes/pendiente.PNG)
+![imagen](./Imagenes/directriz.PNG)
 ## CAPITULO 10
 #### 5. Programar la computadora para que "dibuje" un cuadro en la terminal
 ```c++
@@ -107,6 +107,7 @@ int main()
     }
 }
 ```
+![imagen cuadro](./Imagenes/dibujarcuadrado.PNG)
 #### 6. La computadora trata de adivinar un número que tiene usted en mente. Primero, ella da un número y usted le dice si es demasiado alto, demasiado bajo o correcto. En base a la información que se le proporcione, la computadora ensaya de nuevo. El proceso continua hasta que la computadora acierta el número. Generar un programa que genere este juego de tanteos.
 ```c++
 #include <iostream>
@@ -166,47 +167,56 @@ int main()
       
 }
 ```
+![imagen](./Imagenes/AdivinaNumero.PNG)
+
 #### 7. Correr un programa que pida a dos jugadores que adivinen un número que la computadora saque al azar entre 1 y 75. El programa dará 15 puntos al jugador que de la respuesta mas cercana.
 ```c++
 #include <iostream>
 #include <stdlib.h>
 #include <time.h>
+#include <ctime>
+#include <cstdlib>
+#include <stdlib.h>
 using namespace std;
 int main()
 {
-    int random;
+    int num;
     int p1;
     int p2;
     int diferencia1, diferencia2;
     int cercano;
-    random = 1 + rand() % 75-1;
-    cout << "el numero random es: " << random << endl;
+    srand(time(NULL));
+    num = 1 + rand() % 75-1;
+    
 
     cout << "Player1: ";
     cin >> p1;
     cout << "Player2: ";
     cin >> p2;
 
-    if (random == p1)
+
+    if (num == p1)
     {
-        cout << "Ganador: Player1 +15 puntos";
+        cout << "Ganador: Player1 +15 puntos" << endl;
     }
-    else if (random == p2)
+    else if (num == p2)
     {
-        cout << "Ganador: Player2 +15 puntos";
+        cout << "Ganador: Player2 +15 puntos" << endl;
     }
     else
     {
-        diferencia1 =abs(random - p1);
-        diferencia2 = abs(random - p2);
+        diferencia1 =abs(num - p1);
+        diferencia2 = abs(num - p2);
         if (diferencia1 > diferencia2)
         {
-            cout << "Ganador: Player2 +15 puntos";
+            cout << "Ganador: Player2 +15 puntos" << endl;
         }
         else
         {
-            cout << "Ganador: Player1 +15 puntos";
+            cout << "Ganador: Player1 +15 puntos" << endl;
         }
     }
+
+    cout << "El numero random es: " << num << endl;
 }
 ```
