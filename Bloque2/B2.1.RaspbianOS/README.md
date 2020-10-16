@@ -32,3 +32,24 @@ Cambie el directorio a la carpeta que contiene el núcleo y los archivos de imag
 Después de ejecutarlo aparecerá la ventana de QEMU ejecutando Raspbian OS
 
 ![imagen](https://github.com/silviasalazar/Lenguajes-de-interfaz/blob/main/Imagenes/QEMU.PNG)
+
+Para correr nuestros programas CPP y helloWorld.s tenemos que escribir en la terminal los siguientes comandos:
+`sudo apt-get update`
+`sudo apt-get install build-essential` 
+
+El paquete build essential lleva la mayoría de las herramientas, entre estas el gcc
+
+Después clonaremos el repositorio con nuestros programas
+`git clone https://github.com/silviasalazar/Lenguajes-de-interfaz.git`
+
+Para ejecutar los programas escribimos lo siguiente:
+`g++ o- nombre nombre.cpp`
+
+Resultados:
+
+![imagen](https://github.com/silviasalazar/Lenguajes-de-interfaz/blob/main/Imagenes/helloWorld.PNG)
+![imagen](https://github.com/silviasalazar/Lenguajes-de-interfaz/blob/main/Imagenes/AdivinaNumero.PNG)
+![imagen](https://github.com/silviasalazar/Lenguajes-de-interfaz/blob/main/Imagenes/AdivinarNumeroCercano.PNG)
+![imagen](https://github.com/silviasalazar/Lenguajes-de-interfaz/blob/main/Imagenes/DirectrizyFoco.PNG)
+![imagen](https://github.com/silviasalazar/Lenguajes-de-interfaz/blob/main/Imagenes/Pendiente.PNG)
+
