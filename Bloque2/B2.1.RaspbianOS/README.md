@@ -31,7 +31,10 @@ Cambie el directorio a la carpeta que contiene el núcleo y los archivos de imag
 `C:\> nombre_archivo.bat`
 Después de ejecutarlo aparecerá la ventana de QEMU ejecutando Raspbian OS
 
+![imagen](./Imagenes/ejecucion.PNG)
+
 ![imagen](https://github.com/silviasalazar/Lenguajes-de-interfaz/blob/main/Imagenes/QEMU.PNG)
+
 
 ![imagen](./Imagenes/programas.png)
 
