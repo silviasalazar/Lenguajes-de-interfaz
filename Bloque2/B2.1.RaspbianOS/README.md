@@ -24,7 +24,9 @@ Escriba las siguientes líneas.
 -no-reboot
 ```
 - Guardar como un archivo bat
+
 **NOTA:** Para ello creamos una carpeta llamada rpi y en ella guadamos el archivo .bat junto con la imagen
+
 #### 5. Ejecutar QEMU
 Abre un símbolo del sistema.
 Cambie el directorio a la carpeta que contiene el núcleo y los archivos de imagen, cambie la ruta segun sea pertinente Escriba el comando:
