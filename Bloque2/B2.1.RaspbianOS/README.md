@@ -350,3 +350,5 @@ int main()
 ```
 ![imagen](https://github.com/silviasalazar/Lenguajes-de-interfaz/blob/main/Imagenes/Pendiente.PNG)
 
+## Conclusión
+Como conclusión puedo decir que fue interesante realizar esta tarea, al principio no sabia muy bien que hacer, que era QEMU, asi que empecé a investigar un poco al respecto y empecé a jugar un poco con la terminal poniendo en práctica cosas que ya habiamos realizado en clases. Después comencé a instalar "paquetes" que necesitaba para poder realizar dicha práctica, fue muy interesante ya que aprendí cosas que no conocia y también pude reforzar lo aprendido en clases.
