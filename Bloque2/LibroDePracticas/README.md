@@ -1,3 +1,5 @@
+![imagen](https://github.com/silviasalazar/Lenguajes-de-interfaz/blob/main/Imagenes/cooltext1.png)
+![imagen](https://github.com/silviasalazar/Lenguajes-de-interfaz/blob/main/Imagenes/cooltext2.png)
 # 1.1. Lectura Previa
 ## 1.1.1. Características generales de la arquitectura ARM
 ARM es una arquitectura RISC (Reduced Instruction Set Computer=Ordenador
@@ -88,4 +90,125 @@ Una vez hecho ésto, ya tenemos un fichero ejecutable (nombreprograma) que podem
 Como se muestra a continuación:
 
 ![imagen](https://github.com/silviasalazar/Lenguajes-de-interfaz/blob/main/Imagenes/nano_intro.PNG)
+
 ![imagen](https://github.com/silviasalazar/Lenguajes-de-interfaz/blob/main/Imagenes/ensamblar.PNG)
+
+### 1.2.1. Cómo empezar?
+![imagen](https://github.com/silviasalazar/Lenguajes-de-interfaz/blob/main/Bloque2/B2.1.RaspbianOS/Imagenes/ejecucion.PNG)
+
+![imagen](https://github.com/silviasalazar/Lenguajes-de-interfaz/blob/main/Imagenes/QEMU.PNG)
+
+### 1.2.2. Enteros y naturales
+#### Ejercicio 1.1 y 1.2
+Suponemos dos variables de longitud un byte var1 y var2 con los valores binarios (00110010b) y (11000000b), respectivamente. Completa las casillas en blanco.
+
+![imagen](./Imagenes/ejercicio1.1.PNG)
+
+Calcula ahora la suma de los dos números y responde en las casillas en blanco.
+```assembly
+.data
+var1 : .byte 0b00110010
+.align
+var2 : .byte 0b11000000
+.align
+
+.text
+.global main
+main : ldr r1, = var1 /* r1 <- & var1 */
+ldrsb r1, [ r1 ] /* r1 <- *r1 */
+ldr r2, = var2 /* r2 <- & var2 */
+ldrsb r2, [ r2 ] /* r2 <- *r2 */
+add r0, r1, r2 /* r0 <- r1 + r2 */
+bx lr
+```
+
+Después de guardar el código escribimos lo siguiente:
+`as -o intro1.o intro1.s`
+
+Seguido del mismo escribimos:
+`gcc -o intro1 intro1.o`
+
+Por ultimo:
+`gdb intro1`
+
+### 2.2.3. Instrucciones lógicas
+#### Ejercicio 1.5
+Supón que tienes dos variables de tamaño 1 byte, var1 y var2, con los valores 11110000b y 10101010b. Calcula el resultado de hacer una operación AND y una operación OR entre las dos variables.
+![imagen](./Imagenes/ejercicio1.5.PNG)
+```assembly
+.text
+.global main
+main : mov r2, # 0b11110000 /* r2 <- 11110000 */
+
+mov r3, # 0b10101010 /* r3 <- 10101010 */
+and r0, r2, r3 /* r0 <- r2 AND r3 */
+orr r1, r2, r3 /* r1 <- r2 OR r3 */
+mvn r4, r0 /* r4 <- NOT r0 */
+mov r0, # 0x80000000
+tst r0, # 0x80000000
+tst r0, # 0x40000000
+bx lr
+
+```
+Según el libro este tiene el nombre de intro3.s, entonces:
+`as -o intro1.o intro3.s`
+
+Seguido del mismo escribimos:
+`gcc -o intro3 intro3.o`
+
+Por ultimo:
+`gdb intro3`
+
+### 1.2.4. Rotaciones y desplazamientos
+Las instrucciones de desplazamiento pueden ser lógicas o aritméticas.
+- **Lógicas:** Desplazan los bit del registro fuente introduciendo ceros (uno o más de uno). El último bit que sale del registro fuente se almacena en el flag C.
+![imagen](./Imagenes/logico.PNG)
+- **Aritméticas:** El desplazamiento aritmético hace lo mismo, pero manteniendo el signo 
+![imagen](./Imagenes/aritmetico.PNG)
+
+Las **instrucciones de rotación** también desplazan, pero el bit que sale del valor se realimenta.
+![imagen](./Imagenes/rotacion.PNG)
+
+#### Ejercicio 1.8 (intro4.s)
+```Assembly
+.data
+var1 : .word 0x80000000
+.text
+.global main
+
+main : ldr r0, = var1 /* r0 <- & var1 */
+ldr r1, [ r0 ] /* r1 <- *r0 */
+LSRs r1, r1, #1 /* r1 <- r1 LSR #1 */
+LSRs r1, r1, #3 /* r1 <- r1 LSR #3 */
+ldr r2, [ r0 ] /* r2 <- *r0 */
+ASRs r2, r2, #1 /* r2 <- r2 ASR #1 */
+ASRs r2, r2, #3 /* r2 <- r2 ASR #3 */
+ldr r3, [ r0 ] /* r3 <- *r0 */
+RORs r3, r3, # 31 /* r3 <- r3 ROL #1 */
+RORs r3, r3, # 31 /* r3 <- r3 ROL #1 */
+RORs r3, r3, # 24 /* r3 <- r3 ROL #8 */
+ldr r4, [ r0 ] /* r4 <- *r0 */
+msr cpsr_f, #0 /* C=0 */
+adcs r4, r4, r4 /* rotar izda carry */
+adcs r4, r4, r4 /* rotar izda carry */
+adcs r4, r4, r4 /* rotar izda carry */
+msr cpsr_f, # 0x20000000 /* C=1 */
+adcs r4, r4, r4 /* rotar izda carry */
+bx lr
+```
+
+### 1.2.5. Instrucciones de multiplicación
+Las instrucciones de multiplicación admiten muchas posibilidades, debido a que es una operación en la cual el resultado tiene el doble de bits que cada operando.
+En la siguiente tabla vemos las 5 instrucciones de multiplicación que existen:
+
+| Instrucción| Bits| Nombre|
+|-------------|----|-------|
+|mul| 32=32x32| Multiplicación truncada|
+|umull| 64=32x32| Multiplicación sin signo de 32bits|
+|smull| 64=32x32| Multiplicación con signo de 32bits|
+|smulw*| 32=32x16| Multiplicación con signo de 32x16bits|
+|smul**| 32=16x16| Multiplicación con signo de 16x16bits|
+
+
+![imagen](https://github.com/silviasalazar/Lenguajes-de-interfaz/blob/main/Imagenes/cooltext3.png)
+
