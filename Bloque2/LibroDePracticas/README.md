@@ -335,7 +335,14 @@ final : ...
 
 ```
 ## 2.1.5. Compilación a ensamblador
+Aqui es en donde se aplica la parte de gcc:
 
+`gcc -Os -S -o tipos3a.s tipos3.c`
 
+## 2.1.6. Ejercicios propuestos
+#### Ejercicio 2.1
+Basándonos en los ejemplos anteriores, escribe un bucle for que imprima los 50 primeros números pares naturales en orden inverso (desde 100 hasta 2 en pasos de 2). Una vez hecho esto, aplica desenrollamiento de bucle de tal forma que el salto condicional se ejecute 10 veces, con 5 repeticiones cada vez.
 
+#### Ejercicio 2.2
+Escribe el código ensamblador correspondiente a una estructura if en la que no exista la rama de else.
 
