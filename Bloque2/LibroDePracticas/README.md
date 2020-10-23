@@ -1,3 +1,18 @@
+![](https://github.com/tectijuana/li20b-bii2-qemu-silviasalazar/blob/main/imagen/portadatcnm.png)
+#    Tecnológico Nacional de México
+#   Instituto Tecnológico de Tijuana
+##        Subdirección Académica
+
+## Departamento de Sistemas y Computación
+## Ingeniería en Sistemas Computacionales
+### Materia: Lenguajes de interfaz 
+### Practica Bloque: 2 
+### Objetivo: Libro de prácticas ARM32
+### Salazar Felix Silvia Alejandra 18212266
+### Profesor: MC. René Solis Reyes
+### Semestre sep - ene 2020
+
+
 ![imagen](https://github.com/silviasalazar/Lenguajes-de-interfaz/blob/main/Imagenes/cooltext1.png)
 ![imagen](https://github.com/silviasalazar/Lenguajes-de-interfaz/blob/main/Imagenes/cooltext2.png)
 # 1.1. Lectura Previa
@@ -390,4 +405,44 @@ lea dx, [mensaje]
 mov ah,9
 int 21
 
+```
+## 2.4. Enunciados de la práctica
+### 2.2.1. Suma de elementos de un vector
+El vector se denomina vector y tiene 5 elementos de tipo int (entero de 32 bits).
+```c
+# include < stdio .h >
+void main ( void ){
+int i , suma ;
+int vector [5]= {128 , 32 , 100 , -30 , 124};
+for ( suma = i = 0; i <5; i ++ ){
+suma += vector [i ];
+}
+printf (" La suma es %d \n" , suma );
+}
+
+```
+
+``` asm
+.data
+var1 : .asciz " La suma es %d \n"
+var2 : .word 128, 32, 100, - 30, 124
+.text
+.global main
+/* Salvamos registros */
+main : push { r4, lr }
+/* Inicializamos variables y apuntamos r2 a var2 */
+mov r0, # 5
+mov r1, # 0
+ldr r2, = var2
+/* Bucle que hace la suma */
+bucle : ldr r3, [ r2 ] , # 4
+add r1, r1, r3
+subs r0, r0, #1
+bne bucle
+/* Imprimimos resultado */
+ldr r0, = var1
+bl printf
+/* Recuperamos registros y salimos */
+pop { r4, lr }
+bx lr
 ```
