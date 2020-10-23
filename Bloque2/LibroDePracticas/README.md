@@ -134,7 +134,9 @@ Por ultimo:
 ### 2.2.3. Instrucciones lógicas
 #### Ejercicio 1.5
 Supón que tienes dos variables de tamaño 1 byte, var1 y var2, con los valores 11110000b y 10101010b. Calcula el resultado de hacer una operación AND y una operación OR entre las dos variables.
+
 ![imagen](./Imagenes/ejercicio1.5.PNG)
+
 ```assembly
 .text
 .global main
@@ -161,12 +163,17 @@ Por ultimo:
 
 ### 1.2.4. Rotaciones y desplazamientos
 Las instrucciones de desplazamiento pueden ser lógicas o aritméticas.
+
 - **Lógicas:** Desplazan los bit del registro fuente introduciendo ceros (uno o más de uno). El último bit que sale del registro fuente se almacena en el flag C.
+
 ![imagen](./Imagenes/logico.PNG)
+
 - **Aritméticas:** El desplazamiento aritmético hace lo mismo, pero manteniendo el signo 
+
 ![imagen](./Imagenes/aritmetico.PNG)
 
 Las **instrucciones de rotación** también desplazan, pero el bit que sale del valor se realimenta.
+
 ![imagen](./Imagenes/rotacion.PNG)
 
 #### Ejercicio 1.8 (intro4.s)
@@ -211,4 +218,124 @@ En la siguiente tabla vemos las 5 instrucciones de multiplicación que existen:
 
 
 ![imagen](https://github.com/silviasalazar/Lenguajes-de-interfaz/blob/main/Imagenes/cooltext3.png)
+
+# 2.1. Lectura previa
+## 2.1.1. Modos de direccionamiento del ARM
+En la arquitectura ARM los accesos a memoria se hacen mediante instrucciones específicas *ldr y str*
+o la arquitectura nos fuerza a que trabajemos de un modo determinado: primero cargamos los registros desde memoria, luego procesamos el valor de estos registros con el amplio abanico de instrucciones del ARM, para finalmente volcar los resultados desde registros a memoria. 
+
+- **Direccionamiento inmediato.** El operando fuente es una constante, formando parte de la instrucción.
+```Assembly
+mov r0, # 1
+add r2, r3, #4
+```
+- **Direccionamiento inmediato con desplazamiento o rotación.** Es una variante del anterior en la cual se permiten operaciones intermedias sobre los registros.
+```Assembly
+mov r1, r2, LSL #1 /* r1 <- (r2*2) */
+mov r1, r2, LSL #2 /* r1 <- (r2*4) */
+mov r1, r3, ASR #3 /* r1 <- (r3/8) */
+```
+
+- **Direccionamiento a memoria, sin actualizar registro puntero.** Es la forma más sencilla y admite 4 variantes. Después del acceso a memoria ningún registro implicado en el cálculo de la dirección se modifica.
+```Assembly
+mov r2, # 1 /* r2 <- 1 */
+str r2, [ r1, #+ 12 ] /* *( r1 + 12) <- r2 */
+```
+- **Direccionamiento a memoria, actualizando registro puntero.** En este modo de direccionamiento, el registro que genera la dirección se actualiza con la propia dirección. 
+```Assembly
+mov r2, # 0 /* r2 <- 0 */
+str r2, [ r1 ] , #+ 4 /* a[0] <- r2 */
+str r2, [ r1 ] , #+ 4 /* a[1] <- r2 */
+str r2, [ r1 ] , #+ 4 /* a[2] <- r2 */
+```
+## 2.1.2. Tipos de datos
+En la siguiente tabla se recogen los diferentes tipos de datos básicos que podrán aparecer en los ejemplos, así como su tamaño y rango de representación.
+|ARM| Tipo en C| bits| Rango|
+|---|----------|-----|------|
+|.byte| unsigned char| 8| 0 a 255|
+|.byte|(signed) char| 8| -128 a 127|
+|.hword| unsigned short int| 16|0 a 65.535|
+|.short| (signed) short int| 16| -32.768 a 32767|
+|.word| unsigned int | 32| 0 a 4294967296|
+|.int| (signed) int | 32| -2147483648 a 2147483647|
+|.int| unsigned long int | 32| 0 a 4294967296|
+|.int| (signed) long int | 32| -2147483648 a 2147483647|
+|.quad| unsigned long long | 64| 0 a 2^64|
+|.quad| (signed) long long | 64| -2^63 a 2^(63-1)|
+
+## 2.1.3. Instrucciones de salto
+Las instrucciones de salto pueden producir saltos incondicionales (b y bx) o saltos condicionales. Cuando saltamos a una etiqueta empleamos b, mientras que si queremos saltar a un registro lo hacemos con bx. 
+
+*La lista de algunas condiciones es ésta:*
+- EQ (equal, igual). Cuando Z está activo (Z vale 1).
+- NEQ (not equal, igual). Cuando Z está inactivo (Z vale 0).
+- MI (minus, negativo). Cuando N está activo (N vale 1).
+- PL (plus, positivo o cero). Cuando N está inactivo (N vale 0).
+- CS/HS (carry set/higher or same, carry activo/mayor o igual). Cuando C está
+- activo (C vale 1).
+
+## 2.1.4. Estructuras de control de alto nivel
+Se mira cómo se traducen a ensamblador las estructuras de control de alto nivel que definen un bucle **(for, while, . . . )**, así como las condicionales **(if-else)**.
+
+**Estructura del for y while en C**
+``` c
+int vi , vf , i ;
+for ( i= vi ; i <= vf ; i ++ ){
+/* Cuerpo del bucle */
+}
+i= vi ;
+while ( i <= vf ){
+/* Cuerpo del bucle */
+i ++;
+}
+
+```
+
+**Estructura del for y while en ensamblador**
+``` Assembly
+ldr r1, = vi
+ldr r1, [ r1 ]
+ldr r2, = vf
+ldr r2, [ r2 ]
+bucle : cmp r1, r2
+bhi salir
+/* Cuerpo
+del
+bucle */
+add r1, r1, # 1
+b bucle
+salir :
+
+```
+**Estructura if en C**
+```  c
+int a , b ;
+if( a == b ){
+/* Có digo entonces */
+}
+else {
+/* Có digo sino */
+}
+
+```
+**Estructura if en ensamblador**
+``` Assembly
+ldr r1, = a
+ldr r1, [ r1 ]
+ldr r2, =b
+ldr r2, [ r2 ]
+cmp r1, r2
+bne sino
+entonces :
+/* Có digo entonces */
+b final
+sino :
+/* Có digo sino */
+final : ...
+
+```
+## 2.1.5. Compilación a ensamblador
+
+
+
 
