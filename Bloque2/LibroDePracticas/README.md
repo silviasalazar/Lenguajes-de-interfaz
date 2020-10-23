@@ -342,7 +342,52 @@ Aqui es en donde se aplica la parte de gcc:
 ## 2.1.6. Ejercicios propuestos
 #### Ejercicio 2.1
 Basándonos en los ejemplos anteriores, escribe un bucle for que imprima los 50 primeros números pares naturales en orden inverso (desde 100 hasta 2 en pasos de 2). Una vez hecho esto, aplica desenrollamiento de bucle de tal forma que el salto condicional se ejecute 10 veces, con 5 repeticiones cada vez.
+``` c
+#include <stdio.h>
 
+int main() {
+    
+    for(int e=1; e<=10; e++)
+    {
+        printf("Ejecución no. : %i\n", e);
+        	for(int i=100; i>=2; i-=2)
+	    {
+	         printf("número: %i\n", i);
+	    }
+    }
+
+}
+```
 #### Ejercicio 2.2
 Escribe el código ensamblador correspondiente a una estructura if en la que no exista la rama de else.
 
+**C:**
+``` c
+#include <stdio.h>
+
+int main() {
+    
+    int a=1 , b=1 ;
+    if( a == b )
+    {
+        printf("Son iguales\n");
+    }
+
+}
+```
+
+**Ensamblador:**
+``` asm
+mensaje db ´Son iguales´,13,10,$
+ldr r1, = a
+ldr r1, [ r1 ]
+ldr r2, =b
+ldr r2, [ r2 ]
+cmp r1, r2
+
+IF:
+lea dx, [mensaje]
+mov ah,9
+int 21
+
+```
