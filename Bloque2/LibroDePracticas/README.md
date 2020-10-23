@@ -121,6 +121,12 @@ Suponemos dos variables de longitud un byte var1 y var2 con los valores binarios
 
 Calcula ahora la suma de los dos números y responde en las casillas en blanco.
 ```assembly
+@ Libro de Practicas Arm32
+@ Instituto Tecnologico de Tijuana 
+@ Materia: Lenguajes de Interfaz
+@ Alumna: Salazar Felix Silvia Alejandra
+@ 
+
 .data
 var1 : .byte 0b00110010
 .align
@@ -153,6 +159,12 @@ Supón que tienes dos variables de tamaño 1 byte, var1 y var2, con los valores 
 ![imagen](./Imagenes/ejercicio1.5.PNG)
 
 ```assembly
+@ Libro de Practicas Arm32
+@ Instituto Tecnologico de Tijuana 
+@ Materia: Lenguajes de Interfaz
+@ Alumna: Salazar Felix Silvia Alejandra
+@ 
+
 .text
 .global main
 main : mov r2, # 0b11110000 /* r2 <- 11110000 */
@@ -193,6 +205,12 @@ Las **instrucciones de rotación** también desplazan, pero el bit que sale del 
 
 #### Ejercicio 1.8 (intro4.s)
 ```Assembly
+@ Libro de Practicas Arm32
+@ Instituto Tecnologico de Tijuana 
+@ Materia: Lenguajes de Interfaz
+@ Alumna: Salazar Felix Silvia Alejandra
+@ 
+
 .data
 var1 : .word 0x80000000
 .text
@@ -241,11 +259,23 @@ o la arquitectura nos fuerza a que trabajemos de un modo determinado: primero ca
 
 - **Direccionamiento inmediato.** El operando fuente es una constante, formando parte de la instrucción.
 ```Assembly
+@ Libro de Practicas Arm32
+@ Instituto Tecnologico de Tijuana 
+@ Materia: Lenguajes de Interfaz
+@ Alumna: Salazar Felix Silvia Alejandra
+@ 
+
 mov r0, # 1
 add r2, r3, #4
 ```
 - **Direccionamiento inmediato con desplazamiento o rotación.** Es una variante del anterior en la cual se permiten operaciones intermedias sobre los registros.
 ```Assembly
+@ Libro de Practicas Arm32
+@ Instituto Tecnologico de Tijuana 
+@ Materia: Lenguajes de Interfaz
+@ Alumna: Salazar Felix Silvia Alejandra
+@ 
+
 mov r1, r2, LSL #1 /* r1 <- (r2*2) */
 mov r1, r2, LSL #2 /* r1 <- (r2*4) */
 mov r1, r3, ASR #3 /* r1 <- (r3/8) */
@@ -253,11 +283,23 @@ mov r1, r3, ASR #3 /* r1 <- (r3/8) */
 
 - **Direccionamiento a memoria, sin actualizar registro puntero.** Es la forma más sencilla y admite 4 variantes. Después del acceso a memoria ningún registro implicado en el cálculo de la dirección se modifica.
 ```Assembly
+@ Libro de Practicas Arm32
+@ Instituto Tecnologico de Tijuana 
+@ Materia: Lenguajes de Interfaz
+@ Alumna: Salazar Felix Silvia Alejandra
+@ 
+
 mov r2, # 1 /* r2 <- 1 */
 str r2, [ r1, #+ 12 ] /* *( r1 + 12) <- r2 */
 ```
 - **Direccionamiento a memoria, actualizando registro puntero.** En este modo de direccionamiento, el registro que genera la dirección se actualiza con la propia dirección. 
 ```Assembly
+@ Libro de Practicas Arm32
+@ Instituto Tecnologico de Tijuana 
+@ Materia: Lenguajes de Interfaz
+@ Alumna: Salazar Felix Silvia Alejandra
+@ 
+
 mov r2, # 0 /* r2 <- 0 */
 str r2, [ r1 ] , #+ 4 /* a[0] <- r2 */
 str r2, [ r1 ] , #+ 4 /* a[1] <- r2 */
@@ -294,6 +336,12 @@ Se mira cómo se traducen a ensamblador las estructuras de control de alto nivel
 
 **Estructura del for y while en C**
 ``` c
+@ Libro de Practicas Arm32
+@ Instituto Tecnologico de Tijuana 
+@ Materia: Lenguajes de Interfaz
+@ Alumna: Salazar Felix Silvia Alejandra
+@ 
+
 int vi , vf , i ;
 for ( i= vi ; i <= vf ; i ++ ){
 /* Cuerpo del bucle */
@@ -308,6 +356,12 @@ i ++;
 
 **Estructura del for y while en ensamblador**
 ``` Assembly
+@ Libro de Practicas Arm32
+@ Instituto Tecnologico de Tijuana 
+@ Materia: Lenguajes de Interfaz
+@ Alumna: Salazar Felix Silvia Alejandra
+@ 
+
 ldr r1, = vi
 ldr r1, [ r1 ]
 ldr r2, = vf
@@ -324,6 +378,12 @@ salir :
 ```
 **Estructura if en C**
 ```  c
+@ Libro de Practicas Arm32
+@ Instituto Tecnologico de Tijuana 
+@ Materia: Lenguajes de Interfaz
+@ Alumna: Salazar Felix Silvia Alejandra
+@ 
+
 int a , b ;
 if( a == b ){
 /* Có digo entonces */
@@ -335,6 +395,12 @@ else {
 ```
 **Estructura if en ensamblador**
 ``` Assembly
+@ Libro de Practicas Arm32
+@ Instituto Tecnologico de Tijuana 
+@ Materia: Lenguajes de Interfaz
+@ Alumna: Salazar Felix Silvia Alejandra
+@ 
+
 ldr r1, = a
 ldr r1, [ r1 ]
 ldr r2, =b
@@ -358,6 +424,12 @@ Aqui es en donde se aplica la parte de gcc:
 #### Ejercicio 2.1
 Basándonos en los ejemplos anteriores, escribe un bucle for que imprima los 50 primeros números pares naturales en orden inverso (desde 100 hasta 2 en pasos de 2). Una vez hecho esto, aplica desenrollamiento de bucle de tal forma que el salto condicional se ejecute 10 veces, con 5 repeticiones cada vez.
 ``` c
+@ Libro de Practicas Arm32
+@ Instituto Tecnologico de Tijuana 
+@ Materia: Lenguajes de Interfaz
+@ Alumna: Salazar Felix Silvia Alejandra
+@ 
+
 #include <stdio.h>
 
 int main() {
@@ -378,6 +450,12 @@ Escribe el código ensamblador correspondiente a una estructura if en la que no 
 
 **C:**
 ``` c
+@ Libro de Practicas Arm32
+@ Instituto Tecnologico de Tijuana 
+@ Materia: Lenguajes de Interfaz
+@ Alumna: Salazar Felix Silvia Alejandra
+@ 
+
 #include <stdio.h>
 
 int main() {
@@ -393,6 +471,12 @@ int main() {
 
 **Ensamblador:**
 ``` asm
+@ Libro de Practicas Arm32
+@ Instituto Tecnologico de Tijuana 
+@ Materia: Lenguajes de Interfaz
+@ Alumna: Salazar Felix Silvia Alejandra
+@ 
+
 mensaje db ´Son iguales´,13,10,$
 ldr r1, = a
 ldr r1, [ r1 ]
@@ -410,6 +494,12 @@ int 21
 ### 2.2.1. Suma de elementos de un vector
 El vector se denomina vector y tiene 5 elementos de tipo int (entero de 32 bits).
 ```c
+@ Libro de Practicas Arm32
+@ Instituto Tecnologico de Tijuana 
+@ Materia: Lenguajes de Interfaz
+@ Alumna: Salazar Felix Silvia Alejandra
+@ 
+
 # include < stdio .h >
 void main ( void ){
 int i , suma ;
@@ -423,6 +513,12 @@ printf (" La suma es %d \n" , suma );
 ```
 
 ``` asm
+@ Libro de Practicas Arm32
+@ Instituto Tecnologico de Tijuana 
+@ Materia: Lenguajes de Interfaz
+@ Alumna: Salazar Felix Silvia Alejandra
+@ 
+
 .data
 var1 : .asciz " La suma es %d \n"
 var2 : .word 128, 32, 100, - 30, 124
