@@ -4,19 +4,23 @@
 Generar la imagen y visualizar los recursos de su PC:
 
 `docker build --tag arm64/lenginterfaz:compilador .` 
+
 ![](https://github.com/silviasalazar/Lenguajes-de-interfaz/blob/main/hello-world64/images/build.PNG)
 
 `docker images`
+
 ![](https://github.com/silviasalazar/Lenguajes-de-interfaz/blob/main/hello-world64/images/images.PNG)
 
 Para correrlo:
 
 `docker run  -it --rm --name ensamblador arm64/lenginterfaz:compilador`
+
 ![](https://github.com/silviasalazar/Lenguajes-de-interfaz/blob/main/hello-world64/images/run.PNG)
 
 Para clonar nuestro repositorio con el programa:
 
 `git clone dirección`
+
 ![](https://github.com/silviasalazar/Lenguajes-de-interfaz/blob/main/hello-world64/images/git_clone.PNG)
 
 Podemos configurarlo:
@@ -24,11 +28,13 @@ Podemos configurarlo:
 git config --global user.name "silviasalazar"
 git config --global user.email "silvia.salazar18@tectijuana.edu.mx"
 ```
+
 ![](https://github.com/silviasalazar/Lenguajes-de-interfaz/blob/main/hello-world64/images/config.PNG)
 
 Podemos visualizar nuestro código:
 
-``cat helloworld.s`
+`cat helloworld.s`
+
 ![](https://github.com/silviasalazar/Lenguajes-de-interfaz/blob/main/hello-world64/images/cat.PNG)
 
 ## Make
