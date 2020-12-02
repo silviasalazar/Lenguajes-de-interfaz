@@ -78,3 +78,12 @@ Podemos configurar nuestro GEF:
 Al finalizar utilizamos `make clean`
 
 ![](https://github.com/silviasalazar/Lenguajes-de-interfaz/blob/main/hello-world64/images/makeclean.PNG)
+
+## hello-world desde Docker
+Descargamos la imagen:
+
+![](https://github.com/silviasalazar/Lenguajes-de-interfaz/blob/main/hello-world64/images/imagedocker.PNG)
+
+La corremos:
+
+![](https://github.com/silviasalazar/Lenguajes-de-interfaz/blob/main/hello-world64/images/hellodocker.PNG)
