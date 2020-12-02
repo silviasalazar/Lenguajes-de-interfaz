@@ -57,6 +57,14 @@ Resultado:
 ![](https://github.com/silviasalazar/Lenguajes-de-interfaz/blob/main/hello-world64/images/ejecutar.PNG)
 
 ## GEF
+
+Instalamos GEF de forma manual:
+
+```
+wget -O ~/.gdbinit-gef.py -q http://gef.blah.cat/py
+$ echo source ~/.gdbinit-gef.py >> ~/.gdbinit
+```
+
 ![](https://github.com/silviasalazar/Lenguajes-de-interfaz/blob/main/hello-world64/images/installgef.PNG)
 
 Podemos configurar nuestro GEF:
