@@ -67,3 +67,6 @@ Podemos configurar nuestro GEF:
 
 ![](https://github.com/silviasalazar/Lenguajes-de-interfaz/blob/main/hello-world64/images/usegdb.PNG)
 
+Al finalizar utilizamos `make clean`
+
+![](https://github.com/silviasalazar/Lenguajes-de-interfaz/blob/main/hello-world64/images/makeclean.PNG)
