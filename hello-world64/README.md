@@ -57,7 +57,7 @@ Resultado:
 ![](https://github.com/silviasalazar/Lenguajes-de-interfaz/blob/main/hello-world64/images/ejecutar.PNG)
 
 ## GEF
-![](https://github.com/silviasalazar/Lenguajes-de-interfaz/blob/main/hello-world64/images/gef.PNG)
+![](https://github.com/silviasalazar/Lenguajes-de-interfaz/blob/main/hello-world64/images/installgef.PNG)
 
 Podemos configurar nuestro GEF:
 
