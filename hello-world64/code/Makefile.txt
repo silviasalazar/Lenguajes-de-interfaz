@@ -1,8 +1,0 @@
-#Makefile
-all: helloworld
-helloworld: helloworld.o
-	ld -o $@ $+
-helloworld.o: helloworld.s
-	as -g -mfpu=vfpv2 -o $@ $<
-clean:
-	rm -vf helloworld *.o
