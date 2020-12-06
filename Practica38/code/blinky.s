@@ -1,9 +1,10 @@
 @
 @ Assembler program to flash three LEDs connected to the
 @ Raspberry Pi GPIO port.
-@
-@ r6 - loop variable to flash lights 10 times
-@
+@ Instituto Tecnologico de Tijuana
+@ Lenguajes de Interfaz
+@ Silvia Alejandra Salazar Felix 18212266
+@ Practica 3.8
 
 .include "gpiomacros.s"
 
