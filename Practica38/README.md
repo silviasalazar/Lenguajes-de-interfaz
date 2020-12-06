@@ -1,3 +1,4 @@
+![](https://github.com/silviasalazar/Lenguajes-de-interfaz/blob/main/Practica38/images/cooltext370651591717199.gif)
 
 ## CPP
 ```cpp
