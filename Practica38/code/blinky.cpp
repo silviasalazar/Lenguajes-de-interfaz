@@ -1,7 +1,10 @@
 //
 // blinky.cpp
-//
-//
+// Instituto Tecnologico de Tijuana
+// Lenguajes de Interfaz
+// Silvia Alejandra Salazar Felix 18212266
+// Practica 3.8
+
 #include <iostream>
 #include <wiringPi.h>
 using namespace std;
